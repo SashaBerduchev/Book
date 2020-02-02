@@ -8,16 +8,21 @@
         Title="AddBookWindow" Height="350" Width="600">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="64*"/>
+            <RowDefinition Height="64*"/>
+            <RowDefinition Height="64*"/>
+            <RowDefinition Height="14*"/>
+            <RowDefinition Height="49*"/>
+            <RowDefinition Height="64*"/>
         </Grid.RowDefinitions>
         <TextBox Name="NameBook" Margin="90,15,15,15"/>
         <TextBox Name="Description" Grid.Row="2" Margin="90,10,10,10"/>
-        <TextBox Name="Count" Grid.Row="3" Margin="90,10,10,10"/>
+        <TextBox Name="Count" Grid.Row="3" Margin="90,10,10,10" Grid.RowSpan="2"/>
         <DatePicker Name="DateTime" HorizontalAlignment="Left" Margin="90,22,0,0" Grid.Row="1" VerticalAlignment="Top" Height="32" Width="253"/>
-        <Button Content="Добавить" HorizontalAlignment="Left" Margin="47,10,0,0" Grid.Row="4" VerticalAlignment="Top" Width="489" Height="44" Click="Button_Click"/>
+        <Button Content="Добавить" HorizontalAlignment="Left" Margin="47,10,0,0" Grid.Row="5" VerticalAlignment="Top" Width="489" Height="44" Click="Button_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="61"><Run Text="Название"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="5,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="85" Grid.Row="4"><Run Text="Страницы"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="10,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="61" Grid.Row="2"><Run Text="Описание"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="10,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="61" Grid.Row="1"><Run Text="Дата"/><LineBreak/><Run/></TextBlock>
     </Grid>
 </Window>

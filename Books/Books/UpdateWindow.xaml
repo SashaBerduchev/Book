@@ -19,5 +19,9 @@
         <TextBox Name="Count" Grid.Row="3" Margin="90,10,10,10"/>
         <DatePicker Name="DateTime" HorizontalAlignment="Left" Margin="90,22,0,0" Grid.Row="1" VerticalAlignment="Top" Height="32" Width="253"/>
         <Button Content="Изменить" HorizontalAlignment="Left" Margin="47,10,0,0" Grid.Row="4" VerticalAlignment="Top" Width="489" Height="44" Click="Button_Click" />
+        <TextBlock HorizontalAlignment="Left" Margin="10,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="61"><Run Text="Название"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="0,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="85" Grid.Row="3"><Run Text="Страницы"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="10,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="61" Grid.Row="2"><Run Text="Описание"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="61" Grid.Row="1"><Run Text="Дата"/><LineBreak/><Run/></TextBlock>
     </Grid>
 </Window>

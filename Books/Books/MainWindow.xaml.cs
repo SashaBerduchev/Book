@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ using System.Windows.Shapes;
 using iTextSharp;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+
 
 namespace Books
 {
@@ -119,6 +121,82 @@ namespace Books
             document.Close();
 
             MessageBox.Show("Pdf-документ сохранен");
+        }
+
+        private void ExpExcel_Click(object sender, RoutedEventArgs e)
+        {
+            var xlApp = new Microsoft.Office.Interop.Excel.Application();
+            try
+            {
+                Microsoft.Office.Interop.Excel.Range xlSheetRange;
+                xlApp.Workbooks.Add(Type.Missing);
+                xlApp.Interactive = false;
+                xlApp.EnableEvents = false;
+
+                //выбираем лист на котором будем работать (Лист 1)
+               var xlSheet = (Microsoft.Office.Interop.Excel.Worksheet)xlApp.Sheets[1];
+                //Название листа
+                xlSheet.Name = "Book";
+
+
+                int collInd = 0;
+                string data = "";
+                int rowInd = 0;
+                //называем колонки
+                for (int i = 1; i < booklist.Items.Count; i++)
+                {
+                    data = booklist.Items[i].ToString();
+                    xlSheet.Cells[1, i + 1] = data;
+
+                    //выделяем первую строку
+                    xlSheetRange = xlSheet.get_Range("A3:Z3", Type.Missing);
+
+                    //делаем полужирный текст и перенос слов
+                    xlSheetRange.WrapText = true;
+                    xlSheetRange.Font.Bold = true;
+
+
+                }
+
+                //заполняем строки
+                for (collInd = 0; collInd < booklist.Items.Count; collInd++)
+                {
+                    data = booklist.Items[collInd].ToString();
+                    xlSheet.Cells[collInd + 1, rowInd+1] = data;
+
+                    xlSheet.Cells.Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlInsideVertical].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlDot; // внутренние вертикальные
+                    xlSheet.Cells.Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlInsideHorizontal].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlDot; // внутренние горизонтальные            
+                    xlSheet.Cells.Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeTop].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlDouble; // верхняя внешняя
+                    xlSheet.Cells.Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeRight].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlDouble; // правая внешняя
+                    xlSheet.Cells.Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlDouble; // левая внешняя
+                    xlSheet.Cells.Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlDouble; // нижняя внешняя
+
+                }
+                
+
+                //выбираем всю область данных
+                xlSheetRange = xlSheet.UsedRange;
+
+                //выравниваем строки и колонки по их содержимому
+                xlSheetRange.Columns.AutoFit();
+                xlSheetRange.Rows.AutoFit();
+
+            }
+            catch(Exception exp)
+            {
+                Trace.WriteLine(exp.StackTrace);
+                MessageBox.Show(exp.ToString(), "Error", MessageBoxButton.OK);
+            }
+            finally
+            {
+                //Показываем ексель
+                xlApp.Visible = true;
+
+                xlApp.Interactive = true;
+                xlApp.ScreenUpdating = true;
+                xlApp.UserControl = true;
+
+            }
         }
     }
 }
