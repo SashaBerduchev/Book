@@ -19,7 +19,7 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListBox x:Name="booklist" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="4" Margin="10"/>
+        <ListView x:Name="booklist" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="4" Margin="10" SelectionChanged="booklist_SelectionChanged"/>
         <Button x:Name="AddBookBttn" Grid.Column="3" Margin="20" Content="Добавить" Click="AddBookBttn_Click"/>
         <Button x:Name="DelBookBttn" Grid.Column="2" Margin="20" Content="Удалить" Click="DelBookBttn_Click"/>
         <TextBox x:Name="delelem" Grid.Column ="1" Margin="20"/>

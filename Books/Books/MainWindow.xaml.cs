@@ -34,7 +34,7 @@ namespace Books
             try
             {
                 books = booksModel.BookSet.ToList();
-                booklist.ItemsSource = booksModel.BookSet.Select(x =>x.Id + " "+ x.Name + " " + x.Data + " " + x.Description + " " + x.Count).ToList();
+                booklist.ItemsSource = booksModel.BookSet.ToList();
             }
             catch (Exception exp)
             {
@@ -67,6 +67,11 @@ namespace Books
             {
                 MessageBox.Show("Элемента не существует", "Error", MessageBoxButton.OK);
             }
+        }
+
+        private void booklist_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            new UpdateWindow((Book)booklist.SelectedItem, booksModel, this).Show();
         }
     }
 }
