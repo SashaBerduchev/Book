@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using iTextSharp;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace Books
 {
@@ -72,6 +76,49 @@ namespace Books
         private void booklist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             new UpdateWindow((Book)booklist.SelectedItem, booksModel, this).Show();
+        }
+
+        private void ExpPDF_Click(object sender, RoutedEventArgs e)
+        {
+            iTextSharp.text.Document document = new iTextSharp.text.Document();
+            PdfWriter.GetInstance(document, new FileStream("Books.pdf", FileMode.Create));
+            document.Open();
+            BaseFont baseFont = BaseFont.CreateFont("C:\\Windows\\Fonts\\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+            iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, iTextSharp.text.Font.DEFAULTSIZE, iTextSharp.text.Font.NORMAL);
+
+
+            //Создаем объект таблицы и передаем в нее число столбцов таблицы из нашего датасета
+            PdfPTable table = new PdfPTable(booklist.Items.Count);
+            //Добавим в таблицу общий заголовок
+            PdfPCell cell = new PdfPCell(new Phrase("Books"));
+
+            cell.Colspan = booklist.Items.Count;
+            cell.HorizontalAlignment = 1;
+            //Убираем границу первой ячейки, чтобы балы как заголовок
+            cell.Border = 0;
+            table.AddCell(cell);
+
+            //Сначала добавляем заголовки таблицы
+            for (int j = 0; j < booklist.Items.Count; j++)
+            {
+                cell = new PdfPCell(new Phrase(new Phrase(booklist.Items.Count)));
+                //Фоновый цвет (необязательно, просто сделаем по красивее)
+                cell.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
+                table.AddCell(cell);
+            }
+
+            //Добавляем все остальные ячейки
+            for (int j = 0; j < booklist.Items.Count; j++)
+            {
+                 table.AddCell(new Phrase(booklist.Items[j].ToString(), font));
+            }
+            //Добавляем таблицу в документ
+            document.Add(table);
+            
+            //Закрываем документ
+            document.Close();
+
+            MessageBox.Show("Pdf-документ сохранен");
         }
     }
 }

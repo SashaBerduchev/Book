@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Все Мои данные\Проекты\C-Sharp\Books\Books\obj\Release\
+C:\Все Мои данные\Проекты\C-Sharp\Book\Books\Books\obj\Release\
 Books
 none
 false
 TRACE
-C:\Все Мои данные\Проекты\C-Sharp\Books\Books\App.xaml
-2-2106594796
+C:\Все Мои данные\Проекты\C-Sharp\Book\Books\Books\App.xaml
+3-1348770584
 3823073673
-121009647102
-1863546236
-AddBookWindow.xaml;MainWindow.xaml;
+13-293222660
+19258761035
+AddBookWindow.xaml;MainWindow.xaml;UpdateWindow.xaml;
 
 True
 

@@ -44,3 +44,5 @@ C:\Все Мои данные\Проекты\C-Sharp\Book\Books\Books\obj\Debug\
 C:\Все Мои данные\Проекты\C-Sharp\Book\Books\Books\obj\Debug\Books.pdb
 C:\Все Мои данные\Проекты\C-Sharp\Book\Books\Books\obj\Debug\UpdateWindow.g.cs
 C:\Все Мои данные\Проекты\C-Sharp\Book\Books\Books\obj\Debug\UpdateWindow.baml
+C:\Все Мои данные\Проекты\C-Sharp\Book\Books\Books\bin\Debug\itextsharp.dll
+C:\Все Мои данные\Проекты\C-Sharp\Book\Books\Books\bin\Debug\itextsharp.xml
