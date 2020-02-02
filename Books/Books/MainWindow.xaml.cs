@@ -21,6 +21,7 @@ namespace Books
     public partial class MainWindow : Window
     {
         private BooksModelContainer booksModel;
+        private List<Book> books;
         public MainWindow()
         {
             InitializeComponent();
@@ -32,17 +33,40 @@ namespace Books
         {
             try
             {
-                booklist.ItemsSource = booksModel.BookSet.Select(x => x.Name + " " + x.Data + " " + x.Description + " " + x.Count).ToList();
+                books = booksModel.BookSet.ToList();
+                booklist.ItemsSource = booksModel.BookSet.Select(x =>x.Id + " "+ x.Name + " " + x.Data + " " + x.Description + " " + x.Count).ToList();
             }
             catch (Exception exp)
             {
                 MessageBox.Show(exp.ToString(), "Error", MessageBoxButton.OK);
             }
+            
         }
 
         private void AddBookBttn_Click(object sender, RoutedEventArgs e)
         {
             new AddBookWindow(this).Show();
+        }
+
+        private void DelBookBttn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                booksModel.BookSet.Remove(books[Convert.ToInt32(delelem.Text)]);
+                booksModel.SaveChanges();
+                Loading();
+            }catch(IndexOutOfRangeException)
+            {
+                MessageBox.Show("Элемента не сущетвует", "Error", MessageBoxButton.OK);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Укажите элемент удаления", "Error", MessageBoxButton.OK);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Элемента не существует", "Error", MessageBoxButton.OK);
+            }
         }
     }
 }

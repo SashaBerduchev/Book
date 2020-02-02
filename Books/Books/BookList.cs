@@ -10,7 +10,7 @@ namespace Books
     {
         public override string ToString()
         {
-            return $"{Name}, {Data}, {Description}, {Count}";
+            return $"{Id},{Name}, {Data}, {Description}, {Count}";
         }
     }
 }

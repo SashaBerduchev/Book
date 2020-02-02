@@ -40,18 +40,29 @@ namespace Books
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Book book = new Book
+            try
             {
-                Name = NameBook.Text,
-                Description = Description.Text,
-                Data = (DateTime)DateTime.SelectedDate,
-                Count = Convert.ToInt32(Count.Text)
-            };
-            booksModel.BookSet.Add(book);
-            booksModel.SaveChanges();
-            this.Close();
-            window.Loading();
-            Dispose();
+                Book book = new Book
+                {
+                    Name = NameBook.Text,
+                    Description = Description.Text,
+                    Data = (DateTime)DateTime.SelectedDate,
+                    Count = Convert.ToInt32(Count.Text)
+                };
+                booksModel.BookSet.Add(book);
+                booksModel.SaveChanges();
+                this.Close();
+                window.Loading();
+                Dispose();
+            }
+            catch (System.FormatException)
+            {
+                MessageBox.Show("Введены неверны данные", "Error", MessageBoxButton.OK);
+            }
+            catch (InvalidOperationException)
+            {
+                MessageBox.Show("Введены неверны данные", "Error", MessageBoxButton.OK);
+            }
         }
     }
 }
